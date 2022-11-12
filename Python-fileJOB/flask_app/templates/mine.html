@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+      .plant {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+</style>
+<body>
+    <div class="plant">
+        <h1>Welcome {{user.first_name}}</h1>
+        
+        <button><a href="/user">Main Page</a></button>
+        <button><a href="/logout">Logout</a></button>
+
+    </div>
+    <div>
+        <table class="">
+            <thead>
+                <tr>
+                    <th>Species</th>
+                    <th>Planted By</th>
+                    <th>Action</th>
+                </tr>
+                <h1>Yo {{user.first_name}}</h1>
+            </thead>
+            <tbody>
+                {% for tree in trees %}
+                <tr>
+                    <td>{{tree.species}}-{{tree.id}}</td>
+                    <td>{{ tree.planter.first_name }} {{ tree.planter.last_name }}</td>
+                    <td>
+                        <a href="/show/{{ tree.id }}">Show</a>
+                        <a href="/destroy/{{ tree.id}}">delete</a>
+                        <a href="/edit/{{ tree.id}}">edit</a> 
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

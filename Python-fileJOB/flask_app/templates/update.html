@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+</style>
+<body>
+    <div class="plant">
+        <h1>Welcome {{user.first_name}}</h1>
+        <button><a href="/user">Main Page</a></button>
+        <button><a href="/add">Create a Magazine</a></button>
+        <button><a href="/logout">Logout</a></button>
+    </div>
+    <form action="/user/update/{{user.id}}" method="post">
+        {% with messages = get_flashed_messages(category_filter=['first_name']) %}
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Flashing Message</strong>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+    {% with messages = get_flashed_messages(category_filter=['last_name']) %}
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Flashing Message</strong>
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+{% with messages = get_flashed_messages(category_filter=['email']) %}
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Flashing Message</strong>
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+        <h2>Update Your Infromation.</h2>
+        <div class="form-group">
+            <label for="first_name">Species:</label>
+            <input type="text" name="first_name" value="{{user.first_name}}">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Location:</label>
+            <input type="text" name="last_name" value="{{user.last_name}}">
+        </div>
+        <div class="form-group">
+            <label for="email">Location:</label>
+            <input type="text" name="email" value="{{user.email}}">
+        </div>
+
+        <input type="submit">
+    </form>
+    <div>
+        <table class="mine">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Planted By</th>
+                    <th>Action</th>
+                </tr>
+                <h1>Yo {{user.first_name}}</h1>
+            </thead>
+            <tbody>
+                {% for magazine in magazines %}
+                <tr>
+                    <td>{{magazine.title}}-{{magazine.id}}</td>
+                    <td>{{ magazine.page.first_name }} {{ magazine.page.last_name }}</td>
+                    <td>
+                        <a href="/destroy/{{ magazine.id}}">delete {{magazine.id}}</a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

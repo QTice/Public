@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="plant">
+        <h1>Creat a Tree</h1>
+        <a href="/dash">My Pages!</a>
+        <button><a href="/user">Main Page</a></button>
+        <button><a href="/logout">Logout</a></button>
+    </div>
+    <form action="/page/add" method="post">
+
+        <h2>Plant Tree</h2>
+        {% with messages = get_flashed_messages(category_filter=['title']) %}
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Flashing Message</strong>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+    {% with messages = get_flashed_messages(category_filter=['description']) %}
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Flashing Message</strong>
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" name="title">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" name="description">
+        </div>
+        <input type="submit" value="New Magazine">
+    </form>
+</body>
+</html>

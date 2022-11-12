@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .plant {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+</style>
+<body>
+    <div class="plant">
+        <h1>Welcome {{user.first_name}}</h1>
+        <button><a href="/add">Create a Magazine</a></button>
+        <a href="/edit/{{user.id}}">Account</a>
+        <button><a href="/logout">Logout</a></button>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>The</th>
+                    <th>Best</th>
+                    <th>Reads</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for magazine in magazines %}
+                <tr>
+                    <td><a href="/show/{{ magazine.id }}">{{magazine.title}}</a></td>
+                    <td>{{ magazine.page.first_name }} {{ magazine.page.last_name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
